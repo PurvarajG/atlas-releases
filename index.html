@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#e4e2df" />
+    <meta
+      name="description"
+      content="Atlas is a native macOS capture buffer for the things you want to keep moving. Stash text, clip your screen, and work through notes, tasks, and prompts. Local only."
+    />
+    <meta
+      property="og:title"
+      content="Atlas — Capture the thought. Keep your flow."
+    />
+    <meta
+      property="og:description"
+      content="A little space for everything on your mind. A native, local-only capture buffer for macOS."
+    />
+    <meta property="og:type" content="website" />
+    <title>Atlas — Capture the thought. Keep your flow.</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23e4e2df'/%3E%3Ccircle cx='50' cy='50' r='34' fill='none' stroke='%231d1c1b' stroke-width='6'/%3E%3Cellipse cx='50' cy='50' rx='14' ry='34' fill='none' stroke='%231d1c1b' stroke-width='6'/%3E%3Ccircle cx='74' cy='26' r='9' fill='%23d6006c' stroke='%23e4e2df' stroke-width='4'/%3E%3C/svg%3E"
+    />
+    <link
+      rel="preload"
+      href="assets/Inter-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header wrap">
+      <a class="brand" href="#" aria-label="Atlas home"
+        ><img
+          class="mark mark-light"
+          src="assets/mark-light.png"
+          width="37"
+          height="37"
+          alt=""
+        /><img
+          class="mark mark-dark"
+          src="assets/mark-dark.png"
+          width="37"
+          height="37"
+          alt=""
+        /><span>Atlas</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="#how-it-works">How it works</a
+        ><a href="https://github.com/PurvarajG/atlas-releases" class="repo-link"
+          >GitHub <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+      <div class="header-actions">
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Switch to dark theme"
+          title="Switch theme"
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path
+              d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.3 8.3 0 1 0 20 14.2Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+          </svg></button
+        ><a class="button button-small" href="#get-atlas"
+          >Get Atlas <span aria-hidden="true">↓</span></a
+        >
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot"></span> A LITTLE SPACE FOR YOUR NEXT
+            THOUGHT
+          </p>
+          <h1 id="hero-title">
+            Capture the<br />thought.<br /><span class="muted"
+              >Keep your flow.</span
+            >
+          </h1>
+          <p class="hero-description">
+            The note. The link. The prompt for later.<br />Get it out of your
+            head and into Atlas.<br />A quiet capture buffer that lives on your
+            Mac.
+          </p>
+          <div class="hero-cta">
+            <a class="button" href="#get-atlas"
+              ><svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                aria-hidden="true"
+              >
+                <path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4" /></svg
+              >Get Atlas for macOS</a
+            ><a class="text-link" href="#how-it-works"
+              >Take a closer look <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <p class="hero-meta">
+            macOS 14+ <span>·</span> Native Swift <span>·</span> Local only
+          </p>
+          <div class="hero-footnote">
+            <span class="tiny-orbit" aria-hidden="true">✳</span>
+            <p>
+              For the things worth keeping.<br />And the work you want to get
+              back to.
+            </p>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-grain" aria-hidden="true"></div>
+          <div class="orbit-label" aria-hidden="true">
+            A HOME FOR THE IN-BETWEEN.
+          </div>
+          <div
+            class="app-window"
+            id="product-demo"
+            aria-label="Interactive Atlas preview"
+          >
+            <div class="window-chrome" aria-hidden="true">
+              <i></i><i></i><i></i><span>ATLAS / PREVIEW</span>
+            </div>
+            <div class="app-header">
+              <div class="app-brand">
+                <img
+                  class="mark-light"
+                  src="assets/mark-light.png"
+                  width="49"
+                  height="49"
+                  alt=""
+                /><img
+                  class="mark-dark"
+                  src="assets/mark-dark.png"
+                  width="49"
+                  height="49"
+                  alt=""
+                /><span>Atlas</span>
+              </div>
+              <span class="app-menu" aria-hidden="true">···</span>
+            </div>
+            <div class="app-date">A little less on your mind.</div>
+            <form id="capture-form" class="demo-composer">
+              <label class="sr-only" for="capture-input"
+                >Add a note to the preview</label
+              ><span aria-hidden="true">+</span
+              ><input
+                id="capture-input"
+                maxlength="160"
+                placeholder="Capture a thought…"
+                autocomplete="off"
+              /><button
+                type="submit"
+                aria-label="Capture note"
+                title="Capture note"
+              >
+                ↵
+              </button>
+            </form>
+            <div class="app-tabs" role="group" aria-label="Preview collection">
+              <button
+                type="button"
+                class="active"
+                data-collection="captures"
+                aria-pressed="true"
+              >
+                Captures <span id="capture-count">4</span></button
+              ><button
+                type="button"
+                data-collection="archive"
+                aria-pressed="false"
+              >
+                Archive <span id="archive-count">0</span></button
+              ><button
+                type="button"
+                id="reset-demo"
+                title="Reset preview"
+                aria-label="Reset preview"
+              >
+                ↺
+              </button>
+            </div>
+            <div class="capture-list" id="capture-list">
+              <article class="capture-card">
+                <div class="card-meta">
+                  <span>↗ LINK</span><span>JUST NOW</span>
+                </div>
+                <h3>A reference worth coming back to.</h3>
+                <div class="link-preview">
+                  <div class="link-art" aria-hidden="true">
+                    <span>Less,<br />but better.</span><i>↗</i>
+                  </div>
+                  <div class="link-caption">
+                    A little inspiration for the next idea.<span
+                      >Saved reference</span
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="capture-card prompt-card">
+                <div class="card-meta">
+                  <span>✳ PROMPT</span><span>2 MIN AGO</span>
+                </div>
+                <h3>Find the simpler version.</h3>
+                <p>
+                  Look at this flow with fresh eyes. What could we remove
+                  without losing what matters?
+                </p>
+              </article>
+              <article class="capture-card">
+                <div class="card-meta">
+                  <span>☑ TASK</span><span>TODAY</span>
+                </div>
+                <h3>Give the first draft another look.</h3>
+              </article>
+              <article class="capture-card">
+                <div class="card-meta">
+                  <span>↳ NOTE</span><span>EARLIER</span>
+                </div>
+                <p>Good ideas rarely arrive when you're ready for them.</p>
+              </article>
+            </div>
+            <div class="app-footer">
+              <span><kbd>↵</kbd> capture</span><span><kbd>✓</kbd> archive</span
+              ><span class="local-indicator">● local</span>
+            </div>
+          </div>
+          <div class="demo-caption">
+            <span class="caption-line" aria-hidden="true"></span> Go on, capture
+            a thought. <span>Interactive preview</span>
+          </div>
+        </div>
+      </section>
+      <div class="principles wrap">
+        <span>READY WHEN YOU ARE</span>
+        <p>One shortcut away.</p>
+        <p>No account to create.</p>
+        <p>Nothing sent to the cloud.</p>
+        <span class="principle-symbol" aria-hidden="true">↙</span>
+      </div>
+      <section
+        id="how-it-works"
+        class="workflow wrap section"
+        aria-labelledby="workflow-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">01 / LESS FRICTION</p>
+          <h2 id="workflow-title">Catch it.<br />Carry on.</h2>
+          <p>
+            You shouldn't have to leave your train of thought<br
+              class="desktop-break"
+            />
+            just to save something along the way.
+          </p>
+        </div>
+        <div class="workflow-grid">
+          <article class="workflow-item">
+            <div class="step-visual text-selection">
+              <div class="sample-lines"><span></span><span></span></div>
+              <p>That's the part I want to keep.</p>
+              <div class="sample-lines"><span></span></div>
+              <span class="selection-caret" aria-hidden="true">↖</span>
+              <div class="shortcut-tag"><kbd>⇧</kbd><span>twice</span></div>
+            </div>
+            <div class="step-label">
+              <span>01</span>
+              <h3>Select. Stash.</h3>
+            </div>
+            <p>
+              Highlight text in any app. Double-tap Shift. Atlas keeps it and
+              restores your clipboard.
+            </p>
+          </article>
+          <article class="workflow-item">
+            <div class="step-visual quick-visual">
+              <div class="mini-capture">
+                <span>+</span
+                ><span
+                  >An idea for later<span
+                    class="typing-caret"
+                    aria-hidden="true"
+                  ></span></span
+                ><span>↵</span>
+              </div>
+              <div class="shortcut-tag"><kbd>⌥</kbd><kbd>space</kbd></div>
+            </div>
+            <div class="step-label">
+              <span>02</span>
+              <h3>Think. Capture.</h3>
+            </div>
+            <p>
+              Open the floating bar from anywhere. Type a thought or paste an
+              image. Enter, and you're back.
+            </p>
+          </article>
+          <article class="workflow-item">
+            <div class="step-visual clip-visual">
+              <div class="clip-art">
+                <div class="clip-grid" aria-hidden="true"></div>
+                <div class="clip-frame">
+                  <i></i><i></i><i></i><i></i><span>Keep this bit.</span>
+                </div>
+              </div>
+              <div class="shortcut-tag">
+                <kbd>⌃</kbd><kbd>⌘</kbd><kbd>R</kbd>
+              </div>
+            </div>
+            <div class="step-label">
+              <span>03</span>
+              <h3>See it. Clip it.</h3>
+            </div>
+            <p>
+              Draw a box around what matters. Add a caption right there. The
+              visual and the thought stay together.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="flow-section" aria-labelledby="flow-title">
+        <div class="wrap flow-layout">
+          <div class="flow-copy">
+            <p class="eyebrow">02 / FROM CAPTURE TO CLEAR</p>
+            <h2 id="flow-title">A buffer.<br />Not a backlog.</h2>
+            <p>
+              Atlas is a place to put things on their way to somewhere else.
+              Gather the context, copy it into your next prompt, and tick it
+              off.
+            </p>
+            <p class="flow-note">
+              A small, satisfying loop.<br />Capture → use → clear.
+            </p>
+            <a class="text-link" href="#keyboard"
+              >Meet your new muscle memory <span aria-hidden="true">↘</span></a
+            >
+          </div>
+          <div
+            class="queue-illustration"
+            aria-label="Illustration of a prompt queue"
+          >
+            <div class="queue-top">
+              <span>YOUR NEXT MOVE</span><span>03 ITEMS</span>
+            </div>
+            <div class="queue-row">
+              <span class="queue-number">01</span>
+              <div>
+                <span class="queue-type">NOTE</span>
+                <p>The context you don't want to retype.</p>
+              </div>
+              <span aria-hidden="true">↳</span>
+            </div>
+            <div class="queue-row selected">
+              <span class="queue-number">02</span>
+              <div>
+                <span class="queue-type">PROMPT</span>
+                <p>The question you want to ask next.</p>
+              </div>
+              <kbd>↵</kbd>
+            </div>
+            <div class="queue-row complete">
+              <span class="queue-number">✓</span>
+              <div>
+                <span class="queue-type">DONE</span>
+                <p>The thing that's off your mind.</p>
+              </div>
+              <span aria-hidden="true">✓</span>
+            </div>
+            <div class="queue-bottom">
+              <span>Room for what comes next.</span
+              ><span aria-hidden="true">↗</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="keyboard"
+        class="keyboard-section wrap section"
+        aria-labelledby="keyboard-title"
+      >
+        <div class="section-heading keyboard-heading">
+          <p class="eyebrow">03 / STAY IN THE FLOW</p>
+          <h2 id="keyboard-title">At your fingertips.</h2>
+          <p>
+            Less reaching for the mouse.<br />More getting through what's on
+            your mind.
+          </p>
+        </div>
+        <div class="shortcut-grid">
+          <div>
+            <span>Quick capture</span><span><kbd>⌥</kbd><kbd>Space</kbd></span>
+          </div>
+          <div>
+            <span>Copy selected capture</span><span><kbd>Enter</kbd></span>
+          </div>
+          <div>
+            <span>Stash selected text</span
+            ><span><kbd>⌃</kbd><kbd>⌘</kbd><kbd>S</kbd></span>
+          </div>
+          <div>
+            <span>Mark done / undone</span><span><kbd>Space</kbd></span>
+          </div>
+          <div>
+            <span>Clip a screen region</span
+            ><span><kbd>⌃</kbd><kbd>⌘</kbd><kbd>R</kbd></span>
+          </div>
+          <div>
+            <span>Find a capture</span><span><kbd>⌘</kbd><kbd>F</kbd></span>
+          </div>
+          <div>
+            <span>Move through captures</span
+            ><span
+              ><kbd>j</kbd><kbd>k</kbd><span class="key-or">or</span><kbd>↑</kbd
+              ><kbd>↓</kbd></span
+            >
+          </div>
+          <div>
+            <span>Copy captures as a list</span
+            ><span><kbd>⌘</kbd><kbd>⇧</kbd><kbd>C</kbd></span>
+          </div>
+        </div>
+        <p class="keyboard-note">
+          Global shortcuts work across apps. Queue shortcuts work inside Atlas.
+        </p>
+      </section>
+      <section class="local-section wrap" aria-labelledby="local-title">
+        <div class="local-symbol" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none">
+            <rect
+              x="24"
+              y="41"
+              width="52"
+              height="41"
+              rx="12"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M35 41V30a15 15 0 0 1 30 0v11"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <circle cx="50" cy="61" r="3" fill="currentColor" />
+            <path d="M50 64v5" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </div>
+        <div>
+          <p class="eyebrow">YOURS, BY DESIGN</p>
+          <h2 id="local-title">On your Mac.<br />Off your mind.</h2>
+        </div>
+        <div class="local-copy">
+          <p>
+            Your captures live in a local folder. No login. No cloud service. No
+            API key. Just a native SwiftUI app doing a small job well.
+          </p>
+          <p>
+            Atlas recognizes notes, links, tasks, and events on-device. Your
+            ideas stay with you.
+          </p>
+        </div>
+      </section>
+      <section
+        id="get-atlas"
+        class="get-section wrap section"
+        aria-labelledby="get-title"
+      >
+        <div class="get-copy">
+          <div class="brand-large">
+            <img
+              class="mark-light"
+              src="assets/mark-light.png"
+              width="70"
+              height="70"
+              alt=""
+            /><img
+              class="mark-dark"
+              src="assets/mark-dark.png"
+              width="70"
+              height="70"
+              alt=""
+            />
+          </div>
+          <p class="eyebrow">MAKE A LITTLE ROOM</p>
+          <h2 id="get-title">Your next thought<br />has a home.</h2>
+          <p>Built for the way your mind actually works.</p>
+          <a class="button" href="https://github.com/PurvarajG/atlas-releases/releases/latest"
+            >Download Atlas <span aria-hidden="true">↗</span></a
+          ><span class="get-requirements">For macOS 14 Sonoma and later</span>
+        </div>
+        <div class="install-panel">
+          <div class="install-heading">
+            <span>INSTALL IN A MINUTE</span><span>↙</span>
+          </div>
+          <ol class="install-steps">
+            <li>Download the latest <code>Atlas.dmg</code>.</li>
+            <li>Drag Atlas into Applications and open it.</li>
+            <li>Follow the Setup screen to grant permissions.</li>
+          </ol>
+          <p>Signed and notarized by Apple. Atlas checks for new versions and updates itself.</p>
+          <p class="install-fineprint">
+            Enable Accessibility and Screen Recording in Atlas Settings to use
+            every capture method.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer wrap">
+      <a class="brand" href="#" aria-label="Atlas home"
+        ><img
+          class="mark-light"
+          src="assets/mark-light.png"
+          width="28"
+          height="28"
+          alt=""
+        /><img
+          class="mark-dark"
+          src="assets/mark-dark.png"
+          width="28"
+          height="28"
+          alt=""
+        /><span>Atlas</span></a
+      ><span>A little less on your mind.</span
+      ><a href="https://github.com/PurvarajG/atlas-releases"
+        >Made by Purvaraj <span aria-hidden="true">↗</span></a
+      >
+    </footer>
+    <div
+      id="announcement"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+    ></div>
+    <noscript
+      ><p class="noscript-note">
+        The product preview is interactive with JavaScript enabled. All Atlas
+        information and installation links are available without it.
+      </p></noscript
+    >
+  </body>
+</html>
